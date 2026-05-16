@@ -1,0 +1,9 @@
+#applications\sample\wifi-iot\app\BUILD.gn
+import("//build/lite/config/component/lite_component.gni")
+
+lite_component("app") {
+    features = [
+
+        "workspaces/smart_shed_2.0/data_collector/soil_moisture:smart_shed_2.0",
+    ]
+}
