@@ -6,7 +6,7 @@
 #include "wifiiot_gpio.h"
 #include "wifiiot_gpio_ex.h"
 #include "wifiiot_pwm.h"
-#include "mqtt_task.h"
+#include "smart_shed_shared.h"
 
 #define WATER_PUMP_PIN_NAME WIFI_IOT_IO_NAME_GPIO_10
 #define WATER_PUMP_POWER_PIN WIFI_IOT_IO_NAME_GPIO_5

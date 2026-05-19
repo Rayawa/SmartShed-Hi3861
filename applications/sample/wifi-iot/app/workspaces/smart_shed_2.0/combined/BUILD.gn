@@ -1,0 +1,33 @@
+static_library("smart_shed_combined") {
+    sources = [
+        "main.c",
+        "smart_shed_mqtt.c",
+        "smart_shed_oled.c",
+        "smart_shed_shared.c",
+        "smart_shed_wifi.c",
+        "../data_collector/soil_moisture/soil_moisture_task.c",
+        "../data_collector/light_intensity/light_intensity_task.c",
+        "../data_collector/temp_and_hum/temp_and_hum_task.c",
+        "../actuator/fan/fan_task.c",
+        "../actuator/full_spectrum_led/led_task.c",
+        "../actuator/water_pump/water_pump_task.c",
+        "../data_collector/soil_moisture/oled_ssd1306.c",
+    ]
+
+    include_dirs = [
+        ".",
+        "//utils/native/lite/include",
+        "//kernel/liteos_m/components/cmsis/2.0",
+        "//base/iot_hardware/interfaces/kits/wifiiot_lite",
+        "//vendor/hisi/hi3861/hi3861/third_party/lwip_sack/include",
+        "//foundation/communication/interfaces/kits/wifi_lite/wifiservice",
+        "//third_party/pahomqtt/MQTTPacket/src",
+        "//third_party/pahomqtt/MQTTPacket/samples",
+        "../data_collector/soil_moisture",
+        "../data_collector/light_intensity",
+        "../data_collector/temp_and_hum",
+        "../actuator/fan",
+        "../actuator/full_spectrum_led",
+        "../actuator/water_pump",
+    ]
+}

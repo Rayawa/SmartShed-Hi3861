@@ -29,16 +29,18 @@ int mqtt_connect(void)
 	// int msgid = 1;
 	MQTTString topicString = MQTTString_initializer;
 	// int req_qos = 0;
-	char payload[200];
-	int payloadlen = strlen(payload);
+	char payload[200] = {0};
+	int payloadlen = 0;
 	int len = 0;
 
 	char *host = "broker.emqx.io";
 	int port = 1883;
 
 	mysock = transport_open(host, port);
-	if (mysock < 0)
+	if (mysock < 0) {
+		printf("transport_open failed: %d\n", mysock);
 		return mysock;
+	}
 
 	printf("Sending to hostname %s port %d\n", host, port);
 
@@ -50,6 +52,7 @@ int mqtt_connect(void)
 
 	len = MQTTSerialize_connect(buf, buflen, &data);
 	rc = transport_sendPacketBuffer(mysock, buf, len);
+	printf("MQTT connect packet send rc=%d, len=%d\n", rc, len);
 
 	/* wait for connack */
 	if (MQTTPacket_read(buf, buflen, transport_getdata) == CONNACK)
@@ -66,15 +69,17 @@ int mqtt_connect(void)
 		goto exit;
 
 	topicString.cstring = "Rayawa/soil_moisture_1";
+	printf("MQTT connected, start publish topic=%s\n", topicString.cstring);
 	while (!toStop)
 	{
 
 		snprintf(payload, sizeof(payload), "{\"moisture\":%d}", moisture);
-		printf("%s\n\r", payload);
+		printf("publish payload: %s\n\r", payload);
 		payloadlen = strlen(payload);
 		// printf("publishing reading\n");
 		len = MQTTSerialize_publish(buf, buflen, 0, 0, 0, 0, topicString, (unsigned char *)payload, payloadlen);
 		rc = transport_sendPacketBuffer(mysock, buf, len);
+		printf("transport_sendPacketBuffer rc=%d, len=%d\n", rc, len);
 		sleep(1);
 	}
 

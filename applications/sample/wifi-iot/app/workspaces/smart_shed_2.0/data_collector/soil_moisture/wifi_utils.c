@@ -20,21 +20,32 @@ void connect_wifi(void)
     apConfig.securityType = WIFI_SEC_TYPE_PSK;
 
     errCode = EnableWifi();
+    printf("EnableWifi: %d\r\n", errCode);
+    if (errCode != WIFI_SUCCESS) {
+        return;
+    }
+
     errCode = AddDeviceConfig(&apConfig, &netId);
+    printf("AddDeviceConfig: %d, netId=%d\r\n", errCode, netId);
+    if (errCode != WIFI_SUCCESS) {
+        return;
+    }
 
     errCode = ConnectTo(netId);
     printf("ConnectTo(%d): %d\r\n", netId, errCode);
+    if (errCode != WIFI_SUCCESS) {
+        return;
+    }
     usleep(1000 * 1000);
     // 联网业务开始
     // 这里是网络业务代码...
     struct netif *iface = netifapi_netif_find("wlan0");
-    if (iface)
-    {
+    printf("netifapi_netif_find(\"wlan0\"): %p\r\n", iface);
+    if (iface) {
         err_t ret = netifapi_dhcp_start(iface);
         printf("netifapi_dhcp_start: %d\r\n", ret);
 
-        usleep(5000 * 1000);
-        ; // wait DHCP server give me IP
+        usleep(5000 * 1000); // wait DHCP server give me IP
         ret = netifapi_netif_common(iface, dhcp_clients_info_show, NULL);
         printf("netifapi_netif_common: %d\r\n", ret);
     }

@@ -1,0 +1,47 @@
+defines = -D_XOPEN_SOURCE=700 -DLOS_COMPILE_LDM -DPRODUCT_USR_SOFT_VER_STR=\"None\" -DCYGPKG_POSIX_SIGNALS -D__ECOS__ -D__RTOS_ -DPRODUCT_CFG_HAVE_FEATURE_SYS_ERR_INFO -D__LITEOS__ -DLIB_CONFIGURABLE -DLOSCFG_SHELL -DLOSCFG_CACHE_STATICS -DCUSTOM_AT_COMMAND -DLOS_CONFIG_IPERF3 -DCMSIS_OS_VER=2 -DSECUREC_ENABLE_SCANF_FILE=0 -DCONFIG_AT_COMMAND -DPRODUCT_CFG_CHIP_VER_STR=\"Hi3861V100\" -DCHIP_VER_Hi3861 -DPRODUCT_CFG_SOFT_VER_STR=\"Hi3861\" -DHI_BOARD_ASIC -DHI_ON_FLASH -DLITEOS_WIFI_IOT_VERSION -D__LITEOS_RISCV__
+include_dirs = -I../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined -I../../utils/native/lite/include -I../../kernel/liteos_m/components/cmsis/2.0 -I../../base/iot_hardware/interfaces/kits/wifiiot_lite -I../../vendor/hisi/hi3861/hi3861/third_party/lwip_sack/include -I../../foundation/communication/interfaces/kits/wifi_lite/wifiservice -I../../third_party/pahomqtt/MQTTPacket/src -I../../third_party/pahomqtt/MQTTPacket/samples -I../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/soil_moisture -I../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/light_intensity -I../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/temp_and_hum -I../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/fan -I../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/full_spectrum_led -I../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/water_pump -I../../vendor/hisi/hi3861/hi3861/include -I../../vendor/hisi/hi3861/hi3861/platform/include -I../../vendor/hisi/hi3861/hi3861/platform/system/include -I../../vendor/hisi/hi3861/hi3861/config -I../../vendor/hisi/hi3861/hi3861/config/nv -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/kernel/base/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/targets/hi3861v100/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/kernel/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/arch/risc-v/rv32im -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libm/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libsec/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/net/wpa_supplicant-2.7/src/common -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/targets/hi3861v100/plat/riscv -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/kernel/extended/runstop -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/posix/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/linux/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/net/lwip_sack/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libc/musl/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libc/musl/arch/generic -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libc/musl/arch/riscv32 -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libc/hw/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libc/nuttx/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/targets/hi3861v100/config -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/targets/hi3861v100/user -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/targets/hi3861v100/plat -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/targets/hi3861v100/extend/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/arch -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/components/lib/libc/bionic/libm -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/shell/include -I../../vendor/hisi/hi3861/hi3861/platform/os/Huawei_LiteOS/net/telnet/include
+cflags = -nostdlib -fno-common -fno-builtin -fno-strict-aliasing -fsigned-char -Werror -falign-functions=2 -msave-restore -fno-optimize-strlen -freorder-blocks-algorithm=simple -fno-schedule-insns -fno-inline-small-functions -fno-inline-functions-called-once -mtune=size -mno-small-data-limit=0 -fno-aggressive-loop-optimizations -std=c99 -Wpointer-arith -Wstrict-prototypes -fstack-protector-all -Os -ffunction-sections -fdata-sections -fno-exceptions -fno-short-enums -Wextra -Wall -Wundef -U PRODUCT_CFG_BUILD_TIME -mabi=ilp32 -march=rv32imc -fPIE
+cflags_c = -std=c99
+target_output_name = libsmart_shed_combined
+
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/main.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/main.c
+  source_file_part = main.c
+  source_name_part = main
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_mqtt.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_mqtt.c
+  source_file_part = smart_shed_mqtt.c
+  source_name_part = smart_shed_mqtt
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_oled.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_oled.c
+  source_file_part = smart_shed_oled.c
+  source_name_part = smart_shed_oled
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_shared.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_shared.c
+  source_file_part = smart_shed_shared.c
+  source_name_part = smart_shed_shared
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_wifi.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_wifi.c
+  source_file_part = smart_shed_wifi.c
+  source_name_part = smart_shed_wifi
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/soil_moisture/soil_moisture_task.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/soil_moisture/soil_moisture_task.c
+  source_file_part = soil_moisture_task.c
+  source_name_part = soil_moisture_task
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/light_intensity/light_intensity_task.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/light_intensity/light_intensity_task.c
+  source_file_part = light_intensity_task.c
+  source_name_part = light_intensity_task
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/temp_and_hum/temp_and_hum_task.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/temp_and_hum/temp_and_hum_task.c
+  source_file_part = temp_and_hum_task.c
+  source_name_part = temp_and_hum_task
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/fan/fan_task.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/fan/fan_task.c
+  source_file_part = fan_task.c
+  source_name_part = fan_task
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/full_spectrum_led/led_task.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/full_spectrum_led/led_task.c
+  source_file_part = led_task.c
+  source_name_part = led_task
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/water_pump/water_pump_task.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/water_pump/water_pump_task.c
+  source_file_part = water_pump_task.c
+  source_name_part = water_pump_task
+build obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/soil_moisture/oled_ssd1306.o: cc ../../applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/soil_moisture/oled_ssd1306.c
+  source_file_part = oled_ssd1306.c
+  source_name_part = oled_ssd1306
+
+build ./libs/libsmart_shed_combined.a: alink obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/main.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_mqtt.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_oled.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_shared.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/combined/smart_shed_wifi.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/soil_moisture/soil_moisture_task.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/light_intensity/light_intensity_task.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/temp_and_hum/temp_and_hum_task.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/fan/fan_task.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/full_spectrum_led/led_task.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/actuator/water_pump/water_pump_task.o obj/applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/data_collector/soil_moisture/oled_ssd1306.o
+  arflags =
+  output_extension = .a
+  output_dir = ./libs

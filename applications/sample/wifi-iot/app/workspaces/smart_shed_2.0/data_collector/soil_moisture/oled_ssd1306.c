@@ -6,6 +6,7 @@
 #include "wifiiot_i2c.h"
 #include "wifiiot_errno.h"
 #include "oled_fonts.h"
+#include "smart_shed_shared.h"
 
 #define ARRAY_SIZE(a) sizeof(a)/sizeof(a[0])
 
@@ -29,8 +30,10 @@ static uint32_t I2cWiteByte(uint8_t regAddr, uint8_t byte)
 
     i2cData.sendBuf = buffer;
     i2cData.sendLen = sizeof(buffer)/sizeof(buffer[0]);
-
-    return I2cWrite(id, OLED_I2C_ADDR, &i2cData);
+    smart_shed_i2c0_lock();
+    uint32_t ret = I2cWrite(id, OLED_I2C_ADDR, &i2cData);
+    smart_shed_i2c0_unlock();
+    return ret;
 }
 
 /**
@@ -95,6 +98,7 @@ uint32_t OledInit(void)
     IoSetFunc(WIFI_IOT_IO_NAME_GPIO_13, WIFI_IOT_IO_FUNC_GPIO_13_I2C0_SDA);
     IoSetFunc(WIFI_IOT_IO_NAME_GPIO_14, WIFI_IOT_IO_FUNC_GPIO_14_I2C0_SCL);
 
+    smart_shed_i2c0_init();
     I2cInit(WIFI_IOT_I2C_IDX_0, OLED_I2C_BAUDRATE);
     // I2cSetBaudrate(WIFI_IOT_I2C_IDX_0, OLED_I2C_BAUDRATE);
 

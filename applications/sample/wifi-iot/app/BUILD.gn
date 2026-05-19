@@ -16,5 +16,6 @@ import("//build/lite/config/component/lite_component.gni")
 lite_component("app") {
     features = [
         "startup",
+        "workspaces/smart_shed_2.0/combined:smart_shed_combined",
     ]
 }

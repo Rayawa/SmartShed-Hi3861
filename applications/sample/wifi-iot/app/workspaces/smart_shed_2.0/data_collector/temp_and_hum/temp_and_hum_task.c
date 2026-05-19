@@ -9,6 +9,7 @@
 #include "wifiiot_gpio_ex.h"
 #include "wifiiot_i2c.h"
 #include "wifiiot_errno.h"
+#include "smart_shed_shared.h"
 
 #define SHT40_I2C_IDX 0                 // I2C设备号
 #define SHT40_I2C_BAUDRATE (400 * 1000) // I2C波特率
@@ -31,6 +32,7 @@ int hum = 0;
 void SHT40_Init(void)
 /******************************************************************************/
 {
+    smart_shed_i2c0_init();
     I2cInit(SHT40_I2C_IDX, SHT40_I2C_BAUDRATE); // I2C初始化
 }
 
@@ -48,9 +50,10 @@ void SHT40_Init(void)
 static uint32_t SHT40_Write(uint8_t *buffer, uint32_t buffLen)
 /******************************************************************************/
 {
-
     WifiIotI2cData i2cData = {buffer, buffLen, NULL, 0};
+    smart_shed_i2c0_lock();
     uint32_t retval = I2cWrite(SHT40_I2C_IDX, (SHT40_ADDR << 1) | 0, &i2cData);
+    smart_shed_i2c0_unlock();
     if (retval != 0)
     {
         printf("I2cWrite(%02X) failed, %0X!\n", buffer[0], retval);
@@ -73,7 +76,9 @@ static uint32_t SHT40_Read(uint8_t *buffer, uint32_t buffLen)
 {
     uint32_t retval;
     WifiIotI2cData i2cData = {NULL, 0, buffer, buffLen};
+    smart_shed_i2c0_lock();
     retval = I2cRead(SHT40_I2C_IDX, (SHT40_ADDR << 1) | 1, &i2cData);
+    smart_shed_i2c0_unlock();
     if (retval != 0)
     {
         printf("I2cRead() failed, %0X!\n", retval);
