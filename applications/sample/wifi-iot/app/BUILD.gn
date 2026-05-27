@@ -16,6 +16,9 @@ import("//build/lite/config/component/lite_component.gni")
 lite_component("app") {
     features = [
         "startup",
-        "workspaces/smart_shed_2.0/combined:smart_shed_combined",
+        # Default build target: board 1 (oled + light + temp/hum + rgb led).
+        # Switch to board 2 by replacing the target below with:
+        # "workspaces/smart_shed_2.0/boards/soil_actuator_board:smart_shed_board_soil_actuator",
+        "workspaces/smart_shed_2.0/boards/env_rgb_board:smart_shed_board_env_rgb",
     ]
 }

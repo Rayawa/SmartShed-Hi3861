@@ -1,0 +1,23 @@
+import("//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/common/build/smart_shed_common.gni")
+
+static_library("smart_shed_board_env_rgb") {
+  sources = smart_shed_shared_sources + [
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/sensors/light_intensity/light_intensity_task.c",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/common/display/oled_ssd1306.c",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/sensors/temp_and_hum/temp_and_hum_task.c",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/actuators/led/led_task.c",
+  ]
+
+  include_dirs = smart_shed_shared_include_dirs + [
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/sensors/light_intensity",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/sensors/temp_and_hum",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/actuators/led",
+  ]
+
+  defines = [
+    "SMART_SHED_ENABLE_OLED",
+    "SMART_SHED_ENABLE_LIGHT_INTENSITY",
+    "SMART_SHED_ENABLE_TEMP_AND_HUM",
+    "SMART_SHED_ENABLE_LED",
+  ]
+}

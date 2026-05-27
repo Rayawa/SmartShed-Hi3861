@@ -1,0 +1,23 @@
+import("//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/common/build/smart_shed_common.gni")
+
+static_library("smart_shed_board_soil_actuator") {
+  sources = smart_shed_shared_sources + [
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/sensors/soil_moisture/soil_moisture_task.c",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/common/display/oled_ssd1306.c",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/actuators/fan/fan_task.c",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/actuators/water_pump/water_pump_task.c",
+  ]
+
+  include_dirs = smart_shed_shared_include_dirs + [
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/sensors/soil_moisture",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/actuators/fan",
+    "//applications/sample/wifi-iot/app/workspaces/smart_shed_2.0/modules/actuators/water_pump",
+  ]
+
+  defines = [
+    "SMART_SHED_ENABLE_OLED",
+    "SMART_SHED_ENABLE_SOIL_MOISTURE",
+    "SMART_SHED_ENABLE_FAN",
+    "SMART_SHED_ENABLE_WATER_PUMP",
+  ]
+}
